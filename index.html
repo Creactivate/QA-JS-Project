@@ -24,7 +24,13 @@
     </form>
     <br>
     <br>
-    <input type="text" name="search" onkeyup="searchHandler(this)" id="search" placeholder="Search for Department...">
+    <select onchange="searchHandler(this)" name="serach" id="search">
+        <option value="">Filter By Dept</option>
+        <option value="Sales">Sales</option>
+        <option value="IT">IT</option>
+        <option value="HR">HR</option>
+    </select>
+    <!-- <input type="text" name="search" onkeyup="searchHandler(this)" id="search" placeholder="Search for Department..."> -->
     <br>
     <input type="button" value="Add Entry" onclick="showAddEntry(this)" id="add">
     <table id="dataTableDisplay">
