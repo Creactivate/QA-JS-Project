@@ -38,12 +38,17 @@ td{
     width: 200px;
 }
 
-#deleteRow {
+.deleteRow {
     
     padding: 6px;
 }
 
 #add {
+    width: 50%;
+    
+}
+
+#enableEditing {
     width: 50%;
     
 }

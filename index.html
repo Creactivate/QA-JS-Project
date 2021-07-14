@@ -32,7 +32,8 @@
     </select>
     <!-- <input type="text" name="search" onkeyup="searchHandler(this)" id="search" placeholder="Search for Department..."> -->
     <br>
-    <input type="button" value="Add Entry" onclick="showAddEntry(this)" id="add">
+    <input type="button" value="Add Entry" onclick="showAddEntry(this)" id="add"> <br> <br>
+    <input type="button" value="Enable Editing" onclick="enableEditing(this)" id="enableEditing"> <br> <br>
     <table id="dataTableDisplay">
         <tr>
             <th>NI Number</th>
@@ -44,5 +45,7 @@
     </table>
 
 </body>
+<script src="QA.js"></script>
+<script type="application/json" id="jsonID" src="QA.json" ></script>
 <script src="script.js"></script>
 </html>

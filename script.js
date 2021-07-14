@@ -1,3 +1,6 @@
+console.log(qa);
+console.log(window);
+
 let dataArray = [
     {
         "ninumber": "PF547345X",
@@ -49,6 +52,10 @@ let dataArray = [
         "department": "IT"
     },
 ]
+
+let editable = false;
+
+
 
 let deleteRowHandler = (e) => {
     delete dataArray[e.target.dataset.number];
@@ -116,6 +123,16 @@ let editHandler = (e) => {
     console.log(dataArray);
 }
 
+let showDelete = (event) => {
+    let delBtn = document.querySelector(`.deleteRow[data-number="${event.target.dataset.number}"]`);
+    delBtn.style.visibility = "visible";
+}
+
+let hideDelete = (event) => {
+    let delBtn = document.querySelector(`.deleteRow[data-number="${event.target.dataset.number}"]`);
+    delBtn.style.visibility = "hidden";
+}
+
 let renderTable = () => {
     if (document.getElementById('renderedTable')) {
         document.getElementById('renderedTable').remove();
@@ -128,10 +145,11 @@ let renderTable = () => {
         tableRow.className = "dataCreated";
         let deleteRow = document.createElement('input');
         deleteRow.type = 'button';
-        deleteRow.id = "deleteRow";
+        deleteRow.className = "deleteRow";
         deleteRow.dataset.number = i;
         deleteRow.onclick = deleteRowHandler;
         deleteRow.value = "Delete Entry"
+        deleteRow.style.visibility = "hidden";
         let niNumber = document.createElement('td');
         let fullName = document.createElement('td');
         let phoneNumber = document.createElement('td');
@@ -144,11 +162,11 @@ let renderTable = () => {
         address.innerHTML = item.address;
         department.innerHTML = item.department;
 
-        niNumber.contentEditable = "true";
-        fullName.contentEditable = "true";
-        phoneNumber.contentEditable = "true";
-        address.contentEditable = "true";
-        department.contentEditable = "true";
+        // niNumber.contentEditable = "true";
+        // fullName.contentEditable = "true";
+        // phoneNumber.contentEditable = "true";
+        // address.contentEditable = "true";
+        // department.contentEditable = "true";
 
         niNumber.addEventListener('input',editHandler);
         fullName.addEventListener('input',editHandler);
@@ -168,6 +186,9 @@ let renderTable = () => {
         tableRow.appendChild(address);
         tableRow.appendChild(department);
         tableRow.appendChild(deleteRow);
+        tableRow.dataset.number = i;
+        tableRow.addEventListener('mouseenter', showDelete);
+        tableRow.addEventListener('mouseleave', hideDelete);
 
         tableBody.appendChild(tableRow);
         tableBody.id = "renderedTable";
@@ -209,6 +230,25 @@ let showAddEntry = (e) => {
         document.getElementById('addForm').style.display = "none";
         
     }
+}
+
+let enableEditing = (el) => {
+    let allData = document.querySelectorAll('.dataCreated>td');
+    if (!editable) {
+        allData.forEach(item => {
+            item.contentEditable = 'true';
+            editable = true;
+            el.value = "Disable Editing";
+            allData[0].focus();
+        });
+    } else {
+        allData.forEach(item => {
+            item.contentEditable = 'false';
+            editable = false;
+            el.value = "Enable Editing";
+        });
+    }
+
 }
 
 
