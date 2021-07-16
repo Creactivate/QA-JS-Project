@@ -58,8 +58,12 @@ let editable = false;
 
 
 let deleteRowHandler = (e) => {
-    delete dataArray[e.target.dataset.number];
-    e.target.parentElement.remove();
+    let confirmed = confirm("are you sure");
+    if(confirmed){
+        delete dataArray[e.target.dataset.number];
+        e.target.parentElement.remove();
+    }
+    
 }
 
 let searchHandler = (el) => {
